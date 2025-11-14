@@ -5,10 +5,11 @@ from DatabaseHandler import DatabaseHandler
 
 class EventHandler():
 
-    def __init__(self, search_entry, title_entry, isbn_entry, authors_entry, publisher_entry,\
+    def __init__(self, search_entry, title_entry, series_entry, isbn_entry, authors_entry, publisher_entry,\
                 publish_year_entry, pages_entry, search_status_label, data_status_label):
         self.search_entry = search_entry
         self.title_entry = title_entry
+        self.series_entry = series_entry
         self.isbn_entry = isbn_entry
         self.authors_entry = authors_entry
         self.publisher_entry = publisher_entry
@@ -22,8 +23,8 @@ class EventHandler():
 
 
     def gather_field_data(self):
-        search_text = self.search_entry.get()
         title_text = self.title_entry.get()
+        series_text = self.series_entry.get()
         isbn_text = self.isbn_entry.get()
         authors_text = self.authors_entry.get()
         publisher_text = self.publisher_entry.get()
@@ -31,11 +32,12 @@ class EventHandler():
         pages_text = self.pages_entry.get()
 
         return Book(
-        isbn=search_text,
+        isbn=isbn_text,
         title=title_text,
-        authors=isbn_text,
-        publisher=authors_text,
-        publish_year=publisher_text,
+        authors=authors_text,
+        series= series_text,
+        publisher=publisher_text,
+        publish_year=publish_year_text,
         pages=pages_text
         )
 
@@ -53,6 +55,7 @@ class EventHandler():
     def clear_all_fields(self):
         self.search_entry.delete(0, "end")
         self.title_entry.delete(0, "end")
+        self.series_entry.delete(0, "end")
         self.isbn_entry.delete(0, "end")
         self.authors_entry.delete(0, "end")
         self.publisher_entry.delete(0, "end")
@@ -88,6 +91,7 @@ class EventHandler():
 
         if book:
             self.title_entry.insert(0, book.title)
+            self.series_entry.insert(0, book.series)
             self.isbn_entry.insert(0, str(book.isbn))
             self.authors_entry.insert(0, book.authors)
             self.publisher_entry.insert(0, book.publisher)

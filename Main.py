@@ -21,7 +21,7 @@ def on_move(event):
     root.geometry(f"+{x}+{y}")
 
 root = ttk.Window(themename="vapor")
-root.overrideredirect(True)  # Hide OS frame
+root.overrideredirect(True)
 root.geometry("800x480")
 root.configure(bg="#000000")  # Background color
 
@@ -92,8 +92,11 @@ for i in range(6):
 title_entry_label = ttk.Label(book_info_frame, text="Title", font=sub_header_font, bootstyle=INFO)
 title_entry_label.grid(row=0, column=0, columnspan=4, sticky="w", padx=5, pady=2)
 
+series_label = ttk.Label(book_info_frame, text="Series", font=sub_header_font, bootstyle=INFO)
+series_label.grid(row=0, column=2, sticky="w", padx=5, pady=2)
+
 isbn_label = ttk.Label(book_info_frame, text="ISBN", font=sub_header_font, bootstyle=INFO)
-isbn_label.grid(row=0, column=4, columnspan=2, sticky="w", padx=5, pady=2)
+isbn_label.grid(row=0, column=5, columnspan=2, sticky="w", padx=5, pady=2)
 
 authors_label = ttk.Label(book_info_frame, text="Authors", font=sub_header_font, bootstyle=INFO)
 authors_label.grid(row=2, column=0, columnspan=2, sticky="w", padx=5, pady=2)
@@ -111,11 +114,15 @@ pages_label.grid(row=2, column=5, sticky="w", padx=5, pady=2)
 #--------------------------- Entry Fields
 
 title_entry = ttk.Entry(book_info_frame, font=entry_font, bootstyle=PRIMARY, width=50)
-title_entry.grid(row=1, column=0, columnspan=4, sticky="EW", padx=5, pady=2)
+title_entry.grid(row=1, column=0, columnspan=2, sticky="EW", padx=5, pady=2)
 title_entry.configure(justify="left")
 
-isbn_entry = ttk.Entry(book_info_frame, font=entry_font, bootstyle=PRIMARY, width=20)
-isbn_entry.grid(row=1, column=4, columnspan=2, sticky="EW", padx=5, pady=2)
+series_entry = ttk.Entry(book_info_frame, font=entry_font, bootstyle=PRIMARY, width=15)
+series_entry.grid(row=1, column=2, columnspan=3, sticky="EW", padx=5, pady=2)
+series_entry.configure(justify="left")
+
+isbn_entry = ttk.Entry(book_info_frame, font=entry_font, bootstyle=PRIMARY, width=15)
+isbn_entry.grid(row=1, column=5, columnspan=1, sticky="EW", padx=5, pady=2)
 isbn_entry.configure(justify="left")
 
 authors_entry = ttk.Entry(book_info_frame, font=entry_font, bootstyle=PRIMARY, width=30)
@@ -142,6 +149,7 @@ pages_entry.configure(justify="left")
 handler = EventHandler(
     search_entry,
     title_entry,
+    series_entry,
     isbn_entry,
     authors_entry,
     publisher_entry,

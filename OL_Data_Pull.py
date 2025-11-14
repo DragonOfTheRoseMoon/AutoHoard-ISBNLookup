@@ -60,12 +60,15 @@ class OLAPI:
         year = self.extract_year(publish_date)
         pages = data.get("number_of_pages", 0)
         authors_list = data.get("authors", [])
+        series = data.get("series", [])
+        series_name = ", ".join(series) if isinstance(series, list) else str(series)
 
 
         return Book(
             isbn=isbn,
             title=title,
             authors=self.get_author_info(authors_list),
+            series = series_name,
             publisher=publisher,
             publish_year=year,
             pages=pages

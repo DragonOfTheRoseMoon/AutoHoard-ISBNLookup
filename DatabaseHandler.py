@@ -19,10 +19,11 @@ class DatabaseHandler:
                     isbn TEXT PRIMARY KEY,
                     title TEXT,
                     authors TEXT,
+                    series TEXT DEFAULT "none",
                     publisher TEXT,
                     publish_year INTEGER DEFAULT 0,
                     pages INTEGER DEFAULT 0,
-                    read TEXT DEFAULT NO
+                    read TEXT DEFAULT "NO"
                 )
             """)
             conn.commit()
@@ -38,13 +39,14 @@ class DatabaseHandler:
 
     def add_book_to_database(self, data):
         query = """
-            INSERT INTO books (isbn, title, authors, publisher, publish_year, pages)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO books (isbn, title, authors, series, publisher, publish_year, pages)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             """
         self.cur.execute(query, (
             data.isbn,
             data.title,
             data.authors,
+            data.series,
             data.publisher,
             data.publish_year,
             data.pages
@@ -60,11 +62,9 @@ class DatabaseHandler:
 
 
 
-
-
+#-----------------------------------------------------------------------------------------------------
 
 def main():
-
     DBhandler = DatabaseHandler("BookHoard.db")
     data = Book(
         isbn=9780135166307,
