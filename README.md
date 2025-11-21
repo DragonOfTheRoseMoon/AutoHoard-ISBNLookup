@@ -98,9 +98,7 @@ MIT License — free to use, modify, and distribute.
 ## 💡 Future Ideas
 
 * Upgade to Postgre database
-* Barcode scanning support
-* Theme customization
-* Additional metadata sources
+* Expand to other forms of API usage for UPC as well
 
 ---
 
